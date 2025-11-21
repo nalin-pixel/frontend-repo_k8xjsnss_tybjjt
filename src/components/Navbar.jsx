@@ -10,13 +10,26 @@ function Navbar() {
     { href: '#contact', label: 'Contact' },
   ]
 
+  // Optional: provide a logo URL via environment variable VITE_LOGO_URL
+  const logoUrl = import.meta.env.VITE_LOGO_URL
+  const logoHeight = import.meta.env.VITE_LOGO_HEIGHT || '36' // pixels as string
+
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-slate-900/70 backdrop-blur border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 grid place-items-center text-white font-bold shadow-lg">
-            LC
-          </div>
+          {logoUrl ? (
+            <img
+              src={logoUrl}
+              alt="Lemgoud Capital logo"
+              style={{ height: `${logoHeight}px`, width: 'auto' }}
+              className="rounded-md shadow-lg object-contain"
+            />
+          ) : (
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 grid place-items-center text-white font-bold shadow-lg">
+              LC
+            </div>
+          )}
           <span className="text-white font-semibold text-lg">Lemgoud Capital</span>
         </a>
 
