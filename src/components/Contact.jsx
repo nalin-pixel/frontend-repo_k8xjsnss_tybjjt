@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '', subject: '' })
@@ -32,14 +33,14 @@ function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-10">
           <div>
-            <h2 className="text-3xl font-bold text-white">Get in touch</h2>
-            <p className="mt-2 text-slate-300">Share your opportunity or request. We typically respond within 2 business days.</p>
-            <div className="mt-6 p-6 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-sm space-y-2">
+            <motion.h2 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: 'spring', stiffness: 120, damping: 16 }} className="text-3xl font-bold text-white">Get in touch</motion.h2>
+            <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 }} className="mt-2 text-slate-300">Share your opportunity or request. We typically respond within 2 business days.</motion.p>
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="mt-6 p-6 rounded-xl bg-gradient-to-br from-slate-900/60 to-slate-900/30 border border-white/10 text-slate-300 text-sm space-y-2">
               <p>Email: contact@lemgoudcapital.com</p>
               <p>Location: Global</p>
-            </div>
+            </motion.div>
           </div>
-          <form onSubmit={handleSubmit} className="p-6 rounded-xl bg-white/5 border border-white/10">
+          <motion.form onSubmit={handleSubmit} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="p-6 rounded-xl bg-gradient-to-br from-slate-900/60 to-slate-900/30 border border-white/10">
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm text-slate-300">Name</label>
@@ -58,13 +59,13 @@ function Contact() {
               <label className="block text-sm text-slate-300">Message</label>
               <textarea name="message" value={form.message} onChange={handleChange} rows="4" className="mt-1 w-full px-3 py-2 rounded bg-slate-900/60 border border-white/10 text-white" required />
             </div>
-            <button disabled={status.loading} className="mt-6 px-5 py-3 rounded-lg bg-emerald-500 text-white hover:bg-emerald-600 disabled:opacity-60">
+            <button disabled={status.loading} className="mt-6 px-5 py-3 rounded-lg bg-emerald-500 text-white hover:bg-emerald-600 disabled:opacity-60 shadow-lg shadow-emerald-500/10">
               {status.loading ? 'Sending...' : 'Send message'}
             </button>
             {status.msg && (
               <p className={`mt-3 text-sm ${status.ok ? 'text-emerald-300' : 'text-red-300'}`}>{status.msg}</p>
             )}
-          </form>
+          </motion.form>
         </div>
       </div>
     </section>

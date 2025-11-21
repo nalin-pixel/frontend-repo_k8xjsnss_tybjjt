@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 function Services() {
   const items = [
     {
@@ -21,15 +23,22 @@ function Services() {
   return (
     <section id="services" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-white">What we do</h2>
-        <p className="mt-2 text-slate-300 max-w-2xl">We combine disciplined investment with family values to build sustainable businesses.</p>
+        <motion.h2 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: 'spring', stiffness: 120, damping: 16 }} className="text-3xl font-bold text-white">What we do</motion.h2>
+        <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.05 }} className="mt-2 text-slate-300 max-w-2xl">We combine disciplined investment with family values to build sustainable businesses.</motion.p>
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((it) => (
-            <div key={it.title} className="p-6 rounded-xl bg-white/5 border border-white/10">
+          {items.map((it, idx) => (
+            <motion.div
+              key={it.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ delay: idx * 0.05, type: 'spring', stiffness: 120, damping: 16 }}
+              className="p-6 rounded-xl bg-gradient-to-br from-slate-900/60 to-slate-900/30 border border-white/10 hover:border-emerald-400/40 hover:shadow-[0_0_0_1px_rgba(52,211,153,0.25)] transition-colors"
+            >
               <h3 className="text-lg font-semibold text-white">{it.title}</h3>
               <p className="mt-2 text-slate-300 text-sm">{it.text}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
